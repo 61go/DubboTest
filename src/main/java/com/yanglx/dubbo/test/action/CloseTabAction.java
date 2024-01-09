@@ -24,7 +24,6 @@ public class CloseTabAction extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
         if (tabBar.getTabs().size() > 1) {
-            // 至少保留一个 TAB
             tabBar.closeTab(tabId);
         }
     }

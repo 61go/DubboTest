@@ -1,20 +1,22 @@
 <idea-plugin>
-    <id>com.yanglx</id>
-    <name>DubboTest</name>
-    <vendor email="dev_ylx@163.com" url="">yanglx</vendor>
+    <id>com.mmb.java.plugins</id>
+    <name>MmbDubboTest</name>
+    <vendor email="543002649@qq.com" url="">huruipeng</vendor>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="183"/>
+    <idea-version since-build="222.0" until-build="233.*" />
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="DubboTest"
+        <toolWindow id="忆图科技Dubbo测试工具"
                     secondary="false"
                     anchor="bottom"
                     icon="/icons/dubbo.svg"
-                    factoryClass="com.yanglx.dubbo.test.DubboPanelToolWindow"/>
+                    factoryClass="com.yanglx.dubbo.test.DubboPanelToolWindow"
+
+                    />
         <applicationService serviceImplementation="com.yanglx.dubbo.test.DubboSetingState"/>
         <!-- alt + enter -->
         <intentionAction>
@@ -22,13 +24,13 @@
         </intentionAction>
         <applicationConfigurable parentId="tools" instance="com.yanglx.dubbo.test.config.AppSettingsConfigurable"
                                  id="org.intellij.sdk.settings.AppSettingsConfigurable"
-                                 displayName="DubboTest"/>
+                                 displayName="忆图科技Dubbo测试工具"/>
     </extensions>
 
     <actions>
         <action id="DubboTestAction"
                 class="com.yanglx.dubbo.test.action.DubboTestToolWindowOpenAnAction"
-                text="RunDubboTest"
+                text="忆图科技Dubbo测试工具"
                 description="DubboInvokerFrameOpen"
                 icon="/icons/dubbo.svg"
                 popup="true">

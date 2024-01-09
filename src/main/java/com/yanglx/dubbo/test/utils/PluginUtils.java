@@ -6,13 +6,8 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowManager;
-import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiIdentifier;
-import com.intellij.psi.PsiJavaFile;
-import com.intellij.psi.PsiMethod;
-import com.intellij.psi.PsiParameterList;
-import com.intellij.psi.PsiReferenceExpression;
+import com.intellij.psi.*;
+import com.intellij.psi.util.PsiUtil;
 import com.intellij.ui.tabs.TabInfo;
 import com.yanglx.dubbo.test.CacheInfo;
 import com.yanglx.dubbo.test.DubboSetingState;
@@ -107,10 +102,26 @@ public class PluginUtils {
     public static void openToolWindow(Project project,
                                       PsiElement element) {
         PsiMethod psiMethod = getPsiMethod(element);
-
+        String dubboInterfaceVersion = "0.0.0";
         PsiParameterList parameterList = psiMethod.getParameterList();
         PsiJavaFile javaFile = (PsiJavaFile) psiMethod.getContainingFile();
         PsiClass psiClass = (PsiClass) psiMethod.getParent();
+        PsiAnnotation psiAnnotation = psiClass.getAnnotation("org.apache.dubbo.config.annotation.DubboService");
+        if (psiAnnotation != null) {
+            PsiAnnotationMemberValue version = psiAnnotation.findAttributeValue("version");
+            if (version != null) {
+                dubboInterfaceVersion = version.getText();
+            }
+        }
+
+
+        PsiClass[] interfaces = psiClass.getInterfaces();
+        for (PsiClass anInterface : interfaces) {
+            if (anInterface.getName().endsWith("ServiceI") || anInterface.getName().contains("Dubbo")) {
+                psiClass = anInterface;
+                break;
+            }
+        }
 
         // 服务名称
         String interfaceName = String.format("%s.%s", javaFile.getPackageName(), psiClass.getName());
@@ -142,7 +153,7 @@ public class PluginUtils {
         CacheInfo defaultSetting = dubboConfigs.get(0);
         DubboMethodEntity dubboMethodEntity = new DubboMethodEntity();
         dubboMethodEntity.setAddress(defaultSetting.getAddress());
-        dubboMethodEntity.setVersion(defaultSetting.getVersion());
+        dubboMethodEntity.setVersion(dubboInterfaceVersion);
         dubboMethodEntity.setGroup(defaultSetting.getGroup());
         dubboMethodEntity.setInterfaceName(interfaceName);
         dubboMethodEntity.setParam(initParamArray);

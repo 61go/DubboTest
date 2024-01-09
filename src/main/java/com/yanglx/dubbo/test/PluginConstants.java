@@ -12,5 +12,5 @@ package com.yanglx.dubbo.test;
  */
 public class PluginConstants {
     /** PLUGIN_NAME */
-    public static final String PLUGIN_NAME = "DubboTest";
+    public static final String PLUGIN_NAME = "忆图科技Dubbo测试工具";
 }

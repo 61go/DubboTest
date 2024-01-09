@@ -72,7 +72,9 @@
                 <children>
                   <component id="4fb9" class="javax.swing.JComboBox" binding="addressBox">
                     <constraints border-constraint="Center"/>
-                    <properties/>
+                    <properties>
+                      <model/>
+                    </properties>
                   </component>
                   <grid id="daf" layout-manager="BorderLayout" hgap="0" vgap="0">
                     <constraints border-constraint="East"/>

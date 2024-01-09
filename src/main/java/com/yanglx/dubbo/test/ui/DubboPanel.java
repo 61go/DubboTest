@@ -289,8 +289,7 @@ public class DubboPanel extends JBPanel {
             //异步处理
             Future<Object> submit = executorService.submit(() -> {
                 DubboApiLocator dubboApiLocator = new DubboApiLocator();
-                Object invoke = dubboApiLocator.invoke(dubboMethodEntity);
-                return invoke;
+                return dubboApiLocator.invoke(dubboMethodEntity);
             });
             //异步获取返回值，设置超时时间
             executorService.submit(() -> {

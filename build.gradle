@@ -21,10 +21,14 @@ intellij {
     plugins = ['com.intellij.java']
 }
 
+// 设置Java源文件的编码
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 dependencies {
-    implementation('org.apache.dubbo:dubbo:3.0.0') {
-        exclude group: 'org.springframework'
-    }
+
+    implementation 'org.apache.dubbo:dubbo-spring-boot-starter:3.3.0-beta.1'
     implementation('com.google.code.gson:gson:2.8.9')
     implementation('org.javassist:javassist:3.20.0-GA')
     implementation('org.apache.commons:commons-lang3:3.11')

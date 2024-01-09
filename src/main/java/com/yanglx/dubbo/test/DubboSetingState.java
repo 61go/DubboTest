@@ -59,10 +59,15 @@ public class DubboSetingState implements PersistentStateComponent<DubboSetingSta
     public List<CacheInfo> getDubboConfigs(){
         if (this.dubboConfigs.isEmpty()) {
             CacheInfo cacheInfo = new CacheInfo();
-            cacheInfo.setAddress("zookeeper://127.0.0.1:2181");
+            cacheInfo.setAddress("dubbo://127.0.0.1:20880");
             cacheInfo.setName("Default");
-            cacheInfo.setVersion("1.0.0");
+            cacheInfo.setVersion("0.0.0");
+//            CacheInfo cacheInfo1 = new CacheInfo();
+//            cacheInfo1.setAddress("nacos://127.0.0.1:8848");
+//            cacheInfo1.setName("nacos");
+//            cacheInfo1.setVersion("1.0.0");
             this.dubboConfigs.add(cacheInfo);
+//            this.dubboConfigs.add(cacheInfo1);
         }
         return this.dubboConfigs;
     }

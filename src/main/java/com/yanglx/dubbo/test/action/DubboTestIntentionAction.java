@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * <p>Description: alt + enter, 支持接口, 实现类方法, 方法引用 </p>
+ * <p>Description: alt + enter, </p>
  * todo-dong4j : (2021.02.20 20:29) [判断是否为 dubbo 接口]
  *
  * @author dong4j
